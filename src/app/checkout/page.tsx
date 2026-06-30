@@ -32,11 +32,13 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-        <h1 className="text-2xl font-bold">No hay nada para pagar</h1>
+      <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+        <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+          No hay nada para pagar
+        </h1>
         <Link
           href="/"
-          className="mt-6 inline-block rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white"
+          className="mt-8 inline-block bg-ink px-7 py-3 text-[13px] font-bold uppercase tracking-wide text-paper transition-colors hover:bg-court-deep"
         >
           Ver productos
         </Link>
@@ -81,42 +83,40 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-bold">Checkout</h1>
+    <div className="mx-auto max-w-3xl px-6 py-12">
+      <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+        Checkout
+      </h1>
 
-      <form onSubmit={handleSubmit} className="mt-8 grid gap-8 sm:grid-cols-2">
-        <div className="space-y-4">
-          <h2 className="font-semibold">Datos de envío</h2>
+      <form onSubmit={handleSubmit} className="mt-10 grid gap-12 sm:grid-cols-2">
+        <div className="space-y-5">
+          <h2 className="text-[12px] font-semibold uppercase tracking-[0.15em] text-ink-soft">
+            Datos de envío
+          </h2>
 
           <Field label="Nombre y apellido" name="customerName" required />
-          <Field
-            label="Email"
-            name="customerEmail"
-            type="email"
-            required
-          />
+          <Field label="Email" name="customerEmail" type="email" required />
           <Field label="Teléfono" name="customerPhone" />
-          <Field
-            label="Código postal"
-            name="shippingPostalCode"
-            required
-          />
+          <Field label="Código postal" name="shippingPostalCode" required />
           <Field label="Dirección" name="shippingAddress" required />
 
           <div>
-            <h2 className="mt-6 font-semibold">Método de pago</h2>
-            <div className="mt-2 space-y-2">
-              <label className="flex items-center gap-2 text-sm">
+            <h2 className="mt-8 text-[12px] font-semibold uppercase tracking-[0.15em] text-ink-soft">
+              Método de pago
+            </h2>
+            <div className="mt-3 space-y-3">
+              <label className="flex items-center gap-2 text-[14px]">
                 <input
                   type="radio"
                   name="paymentMethod"
                   checked={paymentMethod === "transferencia"}
                   onChange={() => setPaymentMethod("transferencia")}
+                  className="accent-court"
                 />
                 Transferencia bancaria
-                <span className="text-emerald-600">(con descuento)</span>
+                <span className="text-court">(con descuento)</span>
               </label>
-              <label className="flex items-center gap-2 text-sm text-neutral-400">
+              <label className="flex items-center gap-2 text-[14px] text-ink-soft/60">
                 <input
                   type="radio"
                   name="paymentMethod"
@@ -131,10 +131,12 @@ export default function CheckoutPage() {
         </div>
 
         <div>
-          <h2 className="font-semibold">Resumen</h2>
-          <ul className="mt-2 divide-y divide-neutral-200 text-sm">
+          <h2 className="text-[12px] font-semibold uppercase tracking-[0.15em] text-ink-soft">
+            Resumen
+          </h2>
+          <ul className="mt-3 divide-y divide-line text-[14px]">
             {items.map((item) => (
-              <li key={item.productId} className="flex justify-between py-2">
+              <li key={item.productId} className="flex justify-between py-2.5">
                 <span>
                   {item.name} x{item.quantity}
                 </span>
@@ -149,35 +151,35 @@ export default function CheckoutPage() {
             ))}
           </ul>
 
-          <div className="mt-4 space-y-1 border-t border-neutral-200 pt-4 text-sm">
+          <div className="mt-4 space-y-1.5 border-t border-line pt-4 text-[14px]">
             <div className="flex justify-between">
-              <span>Subtotal</span>
+              <span className="text-ink-soft">Subtotal</span>
               <span>{formatArs(subtotal)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Envío</span>
+              <span className="text-ink-soft">Envío</span>
               <span>
                 {shippingCost === 0 ? "Gratis" : formatArs(shippingCost)}
               </span>
             </div>
             {shippingCost > 0 && (
-              <p className="text-xs text-neutral-500">
+              <p className="text-[12px] text-ink-soft">
                 Envío gratis a partir de{" "}
                 {formatArs(FREE_SHIPPING_THRESHOLD_ARS)}
               </p>
             )}
-            <div className="flex justify-between pt-2 text-base font-semibold">
+            <div className="flex justify-between border-t border-line pt-3 font-display text-base font-bold">
               <span>Total</span>
               <span>{formatArs(total)}</span>
             </div>
           </div>
 
-          {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+          {error && <p className="mt-4 text-[13px] text-danger">{error}</p>}
 
           <button
             type="submit"
             disabled={submitting}
-            className="mt-6 w-full rounded-full bg-neutral-900 px-6 py-3 font-medium text-white disabled:opacity-50"
+            className="mt-7 w-full bg-ink py-4 text-[13px] font-bold uppercase tracking-wide text-paper transition-colors hover:bg-court-deep disabled:opacity-50"
           >
             {submitting ? "Procesando..." : "Confirmar pedido"}
           </button>
@@ -199,13 +201,13 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <label className="block text-sm">
-      <span className="text-neutral-700">{label}</span>
+    <label className="block text-[14px]">
+      <span className="text-ink-soft">{label}</span>
       <input
         name={name}
         type={type}
         required={required}
-        className="mt-1 w-full rounded border border-neutral-300 px-3 py-2"
+        className="mt-1 w-full border border-line bg-paper px-3 py-2.5 focus:border-court focus:outline-none"
       />
     </label>
   );

@@ -7,27 +7,33 @@ export function ProductCard({ product }: { product: Product }) {
     product.price_ars * (1 - product.transfer_discount_pct / 100);
 
   return (
-    <Link
-      href={`/producto/${product.slug}`}
-      className="group block rounded-lg border border-neutral-200 p-4 transition hover:border-neutral-400"
-    >
-      <div className="aspect-square w-full rounded-md bg-neutral-100" />
-      <p className="mt-3 text-xs uppercase tracking-wide text-neutral-500">
-        {product.brand?.name}
+    <Link href={`/producto/${product.slug}`} className="group block">
+      <div className="aspect-square w-full overflow-hidden bg-paper-dim">
+        <div className="h-full w-full transition-transform duration-300 ease-out group-hover:scale-[1.04]" />
+      </div>
+
+      <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-soft">
+        {product.brand?.name ?? "—"}
       </p>
-      <h3 className="mt-1 font-medium text-neutral-900 group-hover:underline">
+      <h3 className="mt-1 text-[15px] leading-snug font-medium text-ink">
         {product.name}
       </h3>
-      <p className="mt-2 text-lg font-semibold">
-        {formatArs(product.price_ars)}
-      </p>
-      {product.transfer_discount_pct > 0 && (
-        <p className="text-sm text-emerald-600">
-          {formatArs(transferPrice)} por transferencia
-        </p>
-      )}
+
+      <div className="mt-2 flex items-baseline gap-2">
+        <span className="font-display text-base font-bold">
+          {formatArs(product.price_ars)}
+        </span>
+        {product.transfer_discount_pct > 0 && (
+          <span className="text-[12px] text-court">
+            {formatArs(transferPrice)} transf.
+          </span>
+        )}
+      </div>
+
       {product.stock === 0 && (
-        <p className="mt-1 text-sm text-red-600">Sin stock</p>
+        <p className="mt-1 text-[12px] font-medium uppercase tracking-wide text-danger">
+          Sin stock
+        </p>
       )}
     </Link>
   );

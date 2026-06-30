@@ -20,15 +20,18 @@ export function UserMenu() {
 
   if (user) {
     return (
-      <div className="flex items-center gap-3 text-sm">
-        <Link href="/mis-pedidos" className="hover:underline">
+      <div className="flex items-center gap-4">
+        <Link
+          href="/mis-pedidos"
+          className="hidden text-ink-soft transition-colors hover:text-ink sm:inline"
+        >
           {user.email}
         </Link>
         <button
           onClick={() => supabase.auth.signOut()}
-          className="hover:underline"
+          className="text-ink-soft transition-colors hover:text-ink"
         >
-          Cerrar sesión
+          Salir
         </button>
       </div>
     );
@@ -42,9 +45,9 @@ export function UserMenu() {
           options: { redirectTo: `${window.location.origin}/auth/callback` },
         })
       }
-      className="text-sm hover:underline"
+      className="text-ink-soft transition-colors hover:text-ink"
     >
-      Iniciar sesión
+      Ingresar
     </button>
   );
 }

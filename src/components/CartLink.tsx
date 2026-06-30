@@ -7,10 +7,13 @@ export function CartLink() {
   const { totalItems } = useCart();
 
   return (
-    <Link href="/carrito" className="relative hover:underline">
+    <Link
+      href="/carrito"
+      className="flex items-center gap-1.5 text-ink-soft transition-colors hover:text-ink"
+    >
       Carrito
       {totalItems > 0 && (
-        <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-neutral-900 px-1.5 text-xs font-medium text-white">
+        <span className="flex h-5 min-w-5 items-center justify-center rounded-sm bg-accent px-1 text-[11px] font-bold text-ink">
           {totalItems}
         </span>
       )}

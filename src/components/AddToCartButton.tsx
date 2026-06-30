@@ -12,7 +12,7 @@ export function AddToCartButton({ product }: { product: Product }) {
     return (
       <button
         disabled
-        className="mt-8 w-full rounded-full bg-neutral-300 px-6 py-3 font-medium text-white"
+        className="mt-8 w-full cursor-not-allowed bg-paper-dim py-4 text-[13px] font-bold uppercase tracking-wide text-ink-soft"
       >
         Sin stock
       </button>
@@ -33,9 +33,13 @@ export function AddToCartButton({ product }: { product: Product }) {
         setAdded(true);
         setTimeout(() => setAdded(false), 1500);
       }}
-      className="mt-8 w-full rounded-full bg-neutral-900 px-6 py-3 font-medium text-white transition hover:bg-neutral-800"
+      className={`mt-8 w-full py-4 text-[13px] font-bold uppercase tracking-wide transition-colors ${
+        added
+          ? "bg-court text-paper"
+          : "bg-ink text-paper hover:bg-court-deep"
+      }`}
     >
-      {added ? "¡Agregado!" : "Agregar al carrito"}
+      {added ? "Agregado ✓" : "Agregar al carrito"}
     </button>
   );
 }

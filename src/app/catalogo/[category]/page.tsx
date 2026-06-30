@@ -16,14 +16,22 @@ export default async function CategoryPage({
   const products = await getProductsByCategory(category);
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10">
-      <h1 className="text-2xl font-bold">{currentCategory.name}</h1>
+    <div className="mx-auto max-w-6xl px-6 py-12">
+      <div className="flex items-baseline justify-between border-b border-line pb-5">
+        <h1 className="font-display text-3xl font-black uppercase tracking-tight">
+          {currentCategory.name}
+        </h1>
+        <span className="text-[13px] uppercase tracking-wide text-ink-soft">
+          {products.length} productos
+        </span>
+      </div>
+
       {products.length === 0 ? (
-        <p className="mt-6 text-neutral-500">
+        <p className="mt-10 text-ink-soft">
           Todavía no hay productos en esta categoría.
         </p>
       ) : (
-        <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

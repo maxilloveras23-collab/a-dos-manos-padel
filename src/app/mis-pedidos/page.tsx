@@ -10,10 +10,12 @@ export default async function MyOrdersPage() {
 
   if (!user) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-        <h1 className="text-2xl font-bold">Iniciá sesión para ver tus pedidos</h1>
-        <p className="mt-2 text-neutral-600">
-          Usá el botón &quot;Iniciar sesión&quot; en la parte superior.
+      <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+        <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+          Iniciá sesión para ver tus pedidos
+        </h1>
+        <p className="mt-2 text-[14px] text-ink-soft">
+          Usá el botón &quot;Ingresar&quot; en la parte superior.
         </p>
       </div>
     );
@@ -25,23 +27,30 @@ export default async function MyOrdersPage() {
     .order("created_at", { ascending: false });
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-bold">Mis pedidos</h1>
+    <div className="mx-auto max-w-3xl px-6 py-12">
+      <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+        Mis pedidos
+      </h1>
 
       {!orders || orders.length === 0 ? (
-        <p className="mt-6 text-neutral-500">Todavía no hiciste ningún pedido.</p>
+        <p className="mt-8 text-[14px] text-ink-soft">
+          Todavía no hiciste ningún pedido.
+        </p>
       ) : (
-        <ul className="mt-6 divide-y divide-neutral-200">
+        <ul className="mt-8 divide-y divide-line border-y border-line">
           {orders.map((order) => (
-            <li key={order.id} className="flex items-center justify-between py-4">
+            <li
+              key={order.id}
+              className="flex items-center justify-between py-4"
+            >
               <div>
                 <Link
                   href={`/pedido/${order.id}/confirmacion`}
-                  className="font-medium hover:underline"
+                  className="font-medium hover:text-court"
                 >
                   Pedido #{order.id.slice(0, 8)}
                 </Link>
-                <p className="text-sm text-neutral-500">
+                <p className="mt-0.5 text-[13px] text-ink-soft">
                   {new Date(order.created_at).toLocaleDateString("es-AR")} ·{" "}
                   {order.status}
                 </p>

@@ -9,11 +9,13 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16 text-center">
-        <h1 className="text-2xl font-bold">Tu carrito está vacío</h1>
+      <div className="mx-auto max-w-3xl px-6 py-24 text-center">
+        <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+          Tu carrito está vacío
+        </h1>
         <Link
           href="/"
-          className="mt-6 inline-block rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white"
+          className="mt-8 inline-block bg-ink px-7 py-3 text-[13px] font-bold uppercase tracking-wide text-paper transition-colors hover:bg-court-deep"
         >
           Ver productos
         </Link>
@@ -22,22 +24,24 @@ export default function CartPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
-      <h1 className="text-2xl font-bold">Tu carrito</h1>
+    <div className="mx-auto max-w-3xl px-6 py-12">
+      <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+        Tu carrito
+      </h1>
 
-      <ul className="mt-6 divide-y divide-neutral-200">
+      <ul className="mt-8 divide-y divide-line border-y border-line">
         {items.map((item) => (
-          <li key={item.productId} className="flex items-center gap-4 py-4">
-            <div className="h-20 w-20 flex-shrink-0 rounded-md bg-neutral-100" />
+          <li key={item.productId} className="flex items-center gap-4 py-5">
+            <div className="h-20 w-20 flex-shrink-0 bg-paper-dim" />
 
             <div className="flex-1">
               <Link
                 href={`/producto/${item.slug}`}
-                className="font-medium hover:underline"
+                className="font-medium hover:text-court"
               >
                 {item.name}
               </Link>
-              <p className="text-sm text-neutral-500">
+              <p className="mt-0.5 text-[13px] text-ink-soft">
                 {formatArs(item.priceArs)} c/u
               </p>
             </div>
@@ -47,7 +51,7 @@ export default function CartPage() {
               onChange={(e) =>
                 setQuantity(item.productId, Number(e.target.value))
               }
-              className="rounded border border-neutral-300 px-2 py-1 text-sm"
+              className="border border-line bg-paper px-2 py-1.5 text-[13px]"
             >
               {Array.from({ length: item.stock }, (_, i) => i + 1).map(
                 (qty) => (
@@ -64,7 +68,7 @@ export default function CartPage() {
 
             <button
               onClick={() => removeItem(item.productId)}
-              className="text-sm text-neutral-400 hover:text-red-600"
+              className="text-[13px] text-ink-soft hover:text-danger"
               aria-label={`Quitar ${item.name}`}
             >
               Quitar
@@ -73,14 +77,18 @@ export default function CartPage() {
         ))}
       </ul>
 
-      <div className="mt-6 flex items-center justify-between border-t border-neutral-200 pt-6">
-        <span className="text-lg font-semibold">Total</span>
-        <span className="text-lg font-semibold">{formatArs(totalArs)}</span>
+      <div className="mt-6 flex items-center justify-between pt-2">
+        <span className="font-display text-lg font-bold uppercase tracking-tight">
+          Total
+        </span>
+        <span className="font-display text-lg font-bold">
+          {formatArs(totalArs)}
+        </span>
       </div>
 
       <Link
         href="/checkout"
-        className="mt-6 block w-full rounded-full bg-neutral-900 px-6 py-3 text-center font-medium text-white hover:bg-neutral-800"
+        className="mt-8 block w-full bg-ink py-4 text-center text-[13px] font-bold uppercase tracking-wide text-paper transition-colors hover:bg-court-deep"
       >
         Continuar al pago
       </Link>

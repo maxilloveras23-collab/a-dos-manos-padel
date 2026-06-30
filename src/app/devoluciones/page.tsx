@@ -1,9 +1,11 @@
 export default function ReturnsPolicyPage() {
   return (
-    <div className="mx-auto max-w-2xl px-6 py-10">
-      <h1 className="text-2xl font-bold">Política de devoluciones</h1>
+    <div className="mx-auto max-w-2xl px-6 py-12">
+      <h1 className="font-display text-2xl font-black uppercase tracking-tight">
+        Política de devoluciones
+      </h1>
 
-      <div className="mt-6 space-y-4 text-sm text-neutral-700">
+      <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-ink-soft">
         <p>
           Tenés 10 días corridos desde que recibís tu pedido para solicitar un
           cambio o devolución, siempre que el producto esté sin uso, con
@@ -11,7 +13,7 @@ export default function ReturnsPolicyPage() {
         </p>
         <p>
           Para iniciar una devolución, escribinos por WhatsApp o email (ver{" "}
-          <a href="/contacto" className="underline">
+          <a href="/contacto" className="text-court underline">
             Contacto
           </a>
           ) indicando el número de pedido y el motivo.
