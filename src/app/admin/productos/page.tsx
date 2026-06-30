@@ -22,7 +22,8 @@ export default async function AdminProductsPage() {
         </Link>
       </div>
 
-      <table className="mt-6 w-full text-sm">
+      <div className="mt-6 overflow-x-auto">
+      <table className="w-full min-w-[640px] text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-left text-neutral-500">
             <th className="py-2">Nombre</th>
@@ -78,6 +79,7 @@ export default async function AdminProductsPage() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

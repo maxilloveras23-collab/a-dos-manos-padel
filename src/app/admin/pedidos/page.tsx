@@ -15,7 +15,8 @@ export default async function AdminOrdersPage() {
     <div>
       <h1 className="text-2xl font-bold">Pedidos</h1>
 
-      <table className="mt-6 w-full text-sm">
+      <div className="mt-6 overflow-x-auto">
+      <table className="w-full min-w-[640px] text-sm">
         <thead>
           <tr className="border-b border-neutral-200 text-left text-neutral-500">
             <th className="py-2">Fecha</th>
@@ -44,6 +45,7 @@ export default async function AdminOrdersPage() {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

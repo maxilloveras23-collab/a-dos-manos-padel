@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CartLink } from "@/components/CartLink";
 import { UserMenu } from "@/components/UserMenu";
+import { MobileNav } from "@/components/MobileNav";
 
 const NAV_ITEMS = [
   { label: "Palas", href: "/catalogo/palas" },
@@ -12,13 +13,16 @@ const NAV_ITEMS = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
-        <Link
-          href="/"
-          className="font-display text-xl font-black uppercase tracking-tight"
-        >
-          Dos Manos<span className="text-court"> Pádel</span>
-        </Link>
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:gap-6 sm:px-6">
+        <div className="flex items-center gap-3">
+          <MobileNav />
+          <Link
+            href="/"
+            className="font-display text-lg font-black uppercase tracking-tight sm:text-xl"
+          >
+            Dos Manos<span className="text-court"> Pádel</span>
+          </Link>
+        </div>
 
         <nav className="hidden gap-7 text-[13px] font-medium uppercase tracking-wide sm:flex">
           {NAV_ITEMS.map((item) => (
@@ -33,7 +37,7 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-5 text-[13px] font-medium uppercase tracking-wide">
+        <div className="flex items-center gap-4 text-[12px] font-medium uppercase tracking-wide sm:gap-5 sm:text-[13px]">
           <UserMenu />
           <CartLink />
         </div>
