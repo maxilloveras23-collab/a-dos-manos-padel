@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CartLink } from "@/components/CartLink";
 
 const NAV_ITEMS = [
   { label: "Palas", href: "/catalogo/palas" },
@@ -20,6 +21,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          <CartLink />
         </nav>
       </div>
     </header>

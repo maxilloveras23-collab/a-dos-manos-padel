@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { AddToCartButton } from "@/components/AddToCartButton";
 import { formatArs } from "@/lib/format";
 import { getProductBySlug } from "@/lib/products";
 
@@ -58,12 +59,7 @@ export default async function ProductPage({
             </div>
           </dl>
 
-          <button
-            disabled={product.stock === 0}
-            className="mt-8 w-full rounded-full bg-neutral-900 px-6 py-3 font-medium text-white disabled:cursor-not-allowed disabled:bg-neutral-300"
-          >
-            {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </div>
