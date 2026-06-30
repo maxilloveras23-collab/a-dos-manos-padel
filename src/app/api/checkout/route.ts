@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceSupabaseClient } from "@/lib/supabase/service";
+import { createAuthAwareSupabaseClient } from "@/lib/supabase/server-auth";
 import { calculateShippingCost } from "@/lib/shipping";
 
 type CheckoutRequestItem = {
@@ -35,6 +36,11 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   }
+
+  const authClient = await createAuthAwareSupabaseClient();
+  const {
+    data: { user },
+  } = await authClient.auth.getUser();
 
   const supabase = createServiceSupabaseClient();
 
@@ -91,6 +97,7 @@ export async function POST(request: Request) {
   const { data: order, error: orderError } = await supabase
     .from("orders")
     .insert({
+      user_id: user?.id ?? null,
       customer_name: body.customerName,
       customer_email: body.customerEmail,
       customer_phone: body.customerPhone ?? null,
